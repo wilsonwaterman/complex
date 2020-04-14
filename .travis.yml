@@ -1,0 +1,23 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t wilsonwaterman/client-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run -e CI=true wilsonwaterman/client-test npm test
+
+after_success:
+  - docker build -t wilsonwaterman/multi-client ./client
+  - docker build -t wilsonwaterman/multi-nginx ./nginx
+  - docker build -t wilsonwaterman/multi-server ./server
+  - docker build -t wilsonwaterman/multi-worker ./worker
+
+  # LOGIN TO DOCKER
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # PUSH IMAGES TO DOCKER HUB
+  - docker push wilsonwaterman/multi-client
+  - docker push wilsonwaterman/multi-nginx
+  - docker push wilsonwaterman/multi-server
+  - docker push wilsonwaterman/multi-worker
