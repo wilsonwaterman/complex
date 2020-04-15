@@ -1,4 +1,4 @@
-/*{
+{
     "AWSEBDockerrunVersion": 2,
     "containerDefinitions": [
         {
@@ -33,4 +33,4 @@
             "links": ["client", "server"]
         }
     ]
-}*/
+}
