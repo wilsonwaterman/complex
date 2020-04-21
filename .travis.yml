@@ -8,18 +8,18 @@ before_install:
 script:
   - docker run wilsonwaterman/react-test npm test -- --coverage
 
-after_success:
-  - docker build -t wilsonwaterman/multi-client ./client
-  - docker build -t wilsonwaterman/multi-nginx ./nginx
-  - docker build -t wilsonwaterman/multi-server ./server
-  - docker build -t wilsonwaterman/multi-worker ./worker
+#after_success:
+#  - docker build -t wilsonwaterman/multi-client ./client
+#  - docker build -t wilsonwaterman/multi-nginx ./nginx
+#  - docker build -t wilsonwaterman/multi-server ./server
+#  - docker build -t wilsonwaterman/multi-worker ./worker
   # Log in to the docker CLI
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+#  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to docker hub
-  - docker push wilsonwaterman/multi-client
-  - docker push wilsonwaterman/multi-nginx
-  - docker push wilsonwaterman/multi-server
-  - docker push wilsonwaterman/multi-worker
+#  - docker push wilsonwaterman/multi-client
+#  - docker push wilsonwaterman/multi-nginx
+#  - docker push wilsonwaterman/multi-server
+#  - docker push wilsonwaterman/multi-worker
 
 #deploy:
 #  provider: elasticbeanstalk
