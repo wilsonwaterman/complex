@@ -3,12 +3,14 @@ kind: ClusterConfig
 
 metadata:
   name: react-app
-  region: us-east-2
+  region: us-east-1
 
 managedNodeGroups:
   - name: client
     instanceType: t2.micro
     desiredCapacity: 3
+    minSize: 3
+    maxSize: 7
     iam:
       withAddonPolicies:
         albIngress: true
