@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: client-deployment-green
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      component: web
+  template:
+    metadata:
+      labels:
+        component: web
+        role: green
+    spec:
+      containers:
+        - name: client
+          image: wilsonwaterman/multi-client:green
+          ports:
+            - containerPort: 3000
