@@ -3,28 +3,27 @@ import os
 import subprocess
 import argparse
 import types
+import accountid
 
-dev_accounts = [ "dev", "deveu"]
-
-all_accounts = dev_accounts
+all_accounts = [ "ww" ]
 
 account_info={
-  "ww": {"id": , "region": "us-east-1"}
+  "ww": {"id": accountid.ACCOUNT_ID, "region": "us-east-1"}
 }
 
 sts = boto3.client('sts')
 
 def run_cli_cmd(account_name, cmd):
     response = sts.assume_role(
-        RoleArn = 'arn:aws:iam::{}:role/CrossAccount'.format(account_info[account_name]["id"]),
-        RoleSessionName = "CrossAccountUtil")
+        RoleArn = 'arn:aws:iam::{}:role/cmdLineRole'.format(account_info[account_name]["id"]),
+        RoleSessionName = "cmdLineRoleUtil")
 
     os.environ['AWS_ACCESS_KEY_ID'] = response['Credentials']['AccessKeyId']
     os.environ['AWS_SECRET_ACCESS_KEY'] = response['Credentials']['SecretAccessKey']
     os.environ['AWS_SESSION_TOKEN'] = response['Credentials']['SessionToken']
     os.environ['AWS_DEFAULT_REGION'] = account_info[account_name]["region"]
 
-    if isinstance(cmd, types.StringTypes):
+    if isinstance(cmd, str):
         subprocess.call(cmd.split(), env=os.environ)
     else:
         subprocess.call(cmd, env=os.environ)
