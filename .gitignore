@@ -1,3 +1,4 @@
 secrets/
 accountid.py
 __pycache__
+.DS_Store
