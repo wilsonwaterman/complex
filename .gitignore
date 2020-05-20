@@ -2,3 +2,4 @@ secrets/
 accountid.py
 __pycache__
 .DS_Store
+create-cluster-existing-vpc.yaml
