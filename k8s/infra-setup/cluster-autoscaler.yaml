@@ -154,7 +154,7 @@ spec:
             - --cloud-provider=aws
             - --skip-nodes-with-local-storage=false
             - --expander=least-waste
-            - --node-group-auto-discovery=asg:tag=k8s.io/cluster-autoscaler/enabled,k8s.io/cluster-autoscaler/react-app
+            - --nodes=1:10:eks-a6b9306f-631a-4fe8-87e8-e42c396a48da
             - --balance-similar-node-groups
             - --skip-nodes-with-system-pods=false
           volumeMounts:
