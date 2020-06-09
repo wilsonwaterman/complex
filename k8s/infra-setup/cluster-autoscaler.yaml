@@ -154,7 +154,7 @@ spec:
             - --cloud-provider=aws
             - --skip-nodes-with-local-storage=false
             - --expander=least-waste
-            - --nodes=1:10:eks-a6b9306f-631a-4fe8-87e8-e42c396a48da
+            - --nodes=1:10:eks-52b94cc8-3970-e3fc-d1e7-9dc5b92bbac1
             - --balance-similar-node-groups
             - --skip-nodes-with-system-pods=false
           volumeMounts:
