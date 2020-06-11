@@ -9,8 +9,8 @@ managedNodeGroups:
   - name: client
     instanceType: m5.large
     desiredCapacity: 3
-    minSize: 3
-    maxSize: 7
+    minSize: 1
+    maxSize: 10
     iam:
       withAddonPolicies:
         albIngress: true
