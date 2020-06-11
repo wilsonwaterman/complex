@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: httpd
+spec:
+  selector:
+    matchLabels:
+      run: httpd
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: httpd
+    spec:
+      containers:
+      - name: httpd
+        image: httpd
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            cpu: 200m
+          requests:
+            cpu: 100m
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: httpd
+  labels:
+    run: httpd
+spec:
+  ports:
+  - port: 80
+  selector:
+    run: httpd
+
